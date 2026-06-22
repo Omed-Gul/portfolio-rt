@@ -19,223 +19,207 @@ html {
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    background: #06111f;
-    color: #eaf4ff;
+    background: #120404;
+    color: #fff7ed;
     line-height: 1.6;
 }
 
-/* Blueprint background */
+/* Red/orange infrastructure background */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     background:
-        linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.28), transparent 35%),
-        radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.18), transparent 35%),
-        #06111f;
-    background-size: 35px 35px, 35px 35px, auto, auto, auto;
+        radial-gradient(circle at 20% 15%, rgba(239, 68, 68, 0.35), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(249, 115, 22, 0.28), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(245, 158, 11, 0.18), transparent 35%),
+        linear-gradient(135deg, #120404, #1c0a0a 50%, #2b0f08);
     z-index: -2;
 }
 
-/* Layout */
-.wrapper {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    min-height: 100vh;
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 237, 213, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 237, 213, 0.045) 1px, transparent 1px);
+    background-size: 42px 42px;
+    z-index: -1;
+    animation: gridMove 18s linear infinite;
 }
 
-/* Sidebar */
-.sidebar {
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 42px 42px; }
+}
+
+/* Top navigation */
+nav {
     position: sticky;
     top: 0;
-    height: 100vh;
-    padding: 32px 24px;
-    background: rgba(2, 12, 27, 0.88);
-    border-right: 1px solid rgba(125, 211, 252, 0.25);
+    z-index: 20;
+    background: rgba(18, 4, 4, 0.78);
     backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(251, 146, 60, 0.22);
+}
+
+.nav-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    font-size: 20px;
-    font-weight: 800;
-    color: #7dd3fc;
-    margin-bottom: 10px;
+    color: #fed7aa;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
-.sidebar .level {
-    color: #b6dcff;
-    font-size: 14px;
-    margin-bottom: 30px;
+.nav-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
-.nav-title {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #38bdf8;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-}
-
-.sidebar a {
-    display: block;
-    color: #dbeafe;
+.nav-links a {
+    color: #ffedd5;
     text-decoration: none;
-    padding: 12px 14px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid transparent;
+    font-weight: 700;
+    font-size: 14px;
+    opacity: 0.88;
     transition: 0.25s;
 }
 
-.sidebar a:hover {
-    background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(125, 211, 252, 0.35);
-    transform: translateX(5px);
+.nav-links a:hover {
+    color: #fb923c;
 }
 
-/* Main */
-.main {
-    padding: 45px;
-}
-
+/* Hero */
 .hero {
-    min-height: 420px;
+    max-width: 1180px;
+    margin: auto;
+    padding: 70px 22px 35px;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 35px;
+    grid-template-columns: 1fr 0.95fr;
+    gap: 34px;
     align-items: center;
-    margin-bottom: 35px;
 }
 
 .kicker {
     display: inline-block;
-    color: #7dd3fc;
-    border: 1px solid rgba(125, 211, 252, 0.35);
-    background: rgba(14, 165, 233, 0.08);
-    padding: 8px 14px;
+    padding: 8px 15px;
+    border: 1px solid rgba(251, 146, 60, 0.45);
+    color: #fdba74;
+    background: rgba(154, 52, 18, 0.22);
     border-radius: 999px;
+    font-weight: 800;
     margin-bottom: 18px;
-    font-weight: 700;
 }
 
 h1 {
-    font-size: clamp(38px, 6vw, 68px);
+    font-size: clamp(40px, 6vw, 68px);
     line-height: 1.02;
     margin-bottom: 20px;
     color: white;
 }
 
 .hero p {
-    color: #c7ddf5;
+    color: #fed7aa;
     font-size: 19px;
-    max-width: 720px;
+    margin-bottom: 25px;
 }
 
-/* Network diagram hero */
-.network-panel {
-    position: relative;
-    min-height: 330px;
-    border-radius: 24px;
-    border: 1px solid rgba(125, 211, 252, 0.25);
-    background:
-        linear-gradient(145deg, rgba(8, 47, 73, 0.65), rgba(2, 12, 27, 0.82));
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
-}
-
-.network-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(125, 211, 252, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(125, 211, 252, 0.07) 1px, transparent 1px);
-    background-size: 24px 24px;
-}
-
-.node {
-    position: absolute;
-    width: 92px;
-    height: 92px;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(125, 211, 252, 0.45);
+.hero-actions {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #e0f2fe;
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.20);
-    z-index: 2;
-    animation: pulse 2.6s infinite ease-in-out;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
-.node.router {
-    top: 115px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(14, 165, 233, 0.18);
+.btn {
+    display: inline-block;
+    padding: 13px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 900;
+    transition: 0.25s;
 }
 
-.node.pc {
-    top: 35px;
-    left: 35px;
+.btn-main {
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    color: white;
+    box-shadow: 0 0 26px rgba(249, 115, 22, 0.35);
 }
 
-.node.wifi {
-    bottom: 35px;
-    left: 55px;
+.btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 34px rgba(249, 115, 22, 0.55);
 }
 
-.node.tv {
-    top: 38px;
-    right: 35px;
+.btn-ghost {
+    border: 1px solid rgba(251, 146, 60, 0.35);
+    color: #ffedd5;
+    background: rgba(255,255,255,0.05);
 }
 
-.node.dhcp {
-    bottom: 38px;
-    right: 55px;
+.btn-ghost:hover {
+    transform: translateY(-3px);
+    background: rgba(251, 146, 60, 0.12);
 }
 
-.line {
-    position: absolute;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
-    opacity: 0.75;
-    z-index: 1;
-    transform-origin: left center;
+/* Image panel */
+.topology-preview {
+    background: rgba(28, 10, 10, 0.82);
+    border: 1px solid rgba(251, 146, 60, 0.28);
+    border-radius: 24px;
+    padding: 14px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+    animation: floatPanel 4s ease-in-out infinite;
 }
 
-.l1 { width: 210px; top: 95px; left: 120px; transform: rotate(20deg); }
-.l2 { width: 205px; top: 230px; left: 120px; transform: rotate(-20deg); }
-.l3 { width: 210px; top: 95px; right: 120px; transform: rotate(-20deg); }
-.l4 { width: 205px; top: 230px; right: 120px; transform: rotate(20deg); }
-
-@keyframes pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.18); }
-    50% { box-shadow: 0 0 38px rgba(56, 189, 248, 0.48); }
+@keyframes floatPanel {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
-/* Sections */
+.topology-preview img {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.10);
+}
+
+.image-caption {
+    padding: 12px 4px 2px;
+    color: #fed7aa;
+    font-size: 14px;
+}
+
+/* Main content */
+main {
+    max-width: 1180px;
+    margin: auto;
+    padding: 20px 22px 70px;
+}
+
 .section {
-    background: rgba(2, 12, 27, 0.78);
-    border: 1px solid rgba(125, 211, 252, 0.18);
+    background: rgba(28, 10, 10, 0.78);
+    border: 1px solid rgba(251, 146, 60, 0.20);
     border-radius: 24px;
     padding: 30px;
     margin-bottom: 24px;
-    box-shadow: 0 18px 45px rgba(0,0,0,0.30);
-    animation: appear 0.7s ease both;
+    box-shadow: 0 18px 46px rgba(0,0,0,0.32);
+    backdrop-filter: blur(14px);
+    animation: appear 0.75s ease both;
 }
 
 @keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(22px);
     }
     to {
         opacity: 1;
@@ -244,18 +228,18 @@ h1 {
 }
 
 .section h2 {
-    color: #e0f2fe;
+    color: #ffedd5;
     font-size: 28px;
     margin-bottom: 16px;
 }
 
 .section p {
-    color: #c7ddf5;
+    color: #fed7aa;
     margin-bottom: 14px;
 }
 
 .badges {
-    margin-top: 15px;
+    margin-top: 14px;
 }
 
 .badge {
@@ -263,79 +247,86 @@ h1 {
     padding: 7px 12px;
     border-radius: 999px;
     margin: 4px;
-    background: rgba(14, 165, 233, 0.12);
-    border: 1px solid rgba(125, 211, 252, 0.28);
-    color: #bae6fd;
+    background: rgba(249, 115, 22, 0.13);
+    border: 1px solid rgba(251, 146, 60, 0.30);
+    color: #ffedd5;
     font-size: 13px;
+    font-weight: 700;
 }
 
-.ac-grid {
+/* Evidence cards */
+.card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 18px;
+    margin-top: 18px;
 }
 
-.ac-card {
-    background: rgba(8, 47, 73, 0.45);
-    border: 1px solid rgba(125, 211, 252, 0.22);
-    padding: 18px;
-    border-radius: 16px;
+.info-card {
+    background: rgba(69, 10, 10, 0.36);
+    border: 1px solid rgba(251, 146, 60, 0.22);
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.25s;
 }
 
-.ac-card b {
-    color: #7dd3fc;
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 146, 60, 0.60);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+}
+
+.info-card b {
+    color: #fb923c;
 }
 
 .proof {
-    padding: 22px;
+    background: rgba(127, 29, 29, 0.28);
+    border: 1px solid rgba(251, 146, 60, 0.32);
     border-radius: 18px;
-    background: rgba(14, 165, 233, 0.10);
-    border: 1px solid rgba(125, 211, 252, 0.30);
+    padding: 22px;
+    margin-top: 14px;
     transition: 0.25s;
 }
 
 .proof:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.30);
+    transform: translateY(-5px);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.38);
 }
 
 a {
-    color: #7dd3fc;
-    font-weight: 800;
+    color: #fdba74;
+    font-weight: 900;
     text-decoration: none;
 }
 
 a:hover {
-    color: #bae6fd;
+    color: #ffedd5;
     text-decoration: underline;
 }
 
 footer {
     text-align: center;
-    color: #8fb7d8;
-    padding: 30px;
+    padding: 34px 20px;
+    color: #fdba74;
+    opacity: 0.8;
 }
 
+/* Responsive */
 @media (max-width: 950px) {
-    .wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar {
-        position: relative;
-        height: auto;
-    }
-
-    .main {
-        padding: 25px;
-    }
-
     .hero {
         grid-template-columns: 1fr;
+        padding-top: 45px;
     }
 
-    .ac-grid {
+    .card-grid {
         grid-template-columns: 1fr;
+    }
+
+    .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
     }
 }
 </style>
@@ -344,51 +335,46 @@ footer {
 
 <body>
 
-<div class="wrapper">
+<nav>
+    <div class="nav-inner">
+        <div class="logo">ADMINISTRER · RÉSEAU LOCAL</div>
+        <div class="nav-links">
+            <a href="#preuve">Preuve</a>
+            <a href="#competences">Compétences</a>
+            <a href="#bilan">Bilan</a>
+            <a href="#documents">Documents</a>
+            <a href="index.html">Retour</a>
+        </div>
+    </div>
+</nav>
 
-<aside class="sidebar">
-    <div class="logo">ADMINISTRER</div>
-    <p class="level">Niveau 1 : assister l’administrateur du réseau</p>
-
-```
-<div class="nav-title">Navigation</div>
-<a href="#preuve">Preuve principale</a>
-<a href="#ac">Apprentissages critiques</a>
-<a href="#bilan">Ce que j’ai appris</a>
-<a href="#documents">Documents</a>
-<a href="index.html">← Retour au portfolio</a>
-```
-
-</aside>
-
-<div class="main">
-
-<section class="hero">
+<header class="hero">
     <div>
-        <span class="kicker">Compétence 1 · Infrastructure réseau</span>
+        <span class="kicker">Compétence 1 · Assister l’administrateur réseau</span>
         <h1>Administrer les réseaux et l’Internet</h1>
         <p>
-            Cette compétence montre ma capacité à comprendre, représenter et documenter une infrastructure réseau locale :
-            équipements, topologie, adressage IP, DHCP, DNS, NAT, Wi-Fi et câblage.
+            Cette page présente ma preuve principale pour la compétence Administrer :
+            l’analyse, la documentation et la représentation de mon réseau local domestique.
         </p>
-    </div>
 
 ```
-<div class="network-panel">
-    <div class="line l1"></div>
-    <div class="line l2"></div>
-    <div class="line l3"></div>
-    <div class="line l4"></div>
+    <div class="hero-actions">
+        <a class="btn btn-main" href="#documents">Ouvrir les preuves</a>
+        <a class="btn btn-ghost" href="index.html">← Retour au portfolio</a>
+    </div>
+</div>
 
-    <div class="node router">Freebox<br>Routeur</div>
-    <div class="node pc">PC<br>Ethernet</div>
-    <div class="node wifi">Wi-Fi<br>Répéteur</div>
-    <div class="node tv">TV<br>Player</div>
-    <div class="node dhcp">DHCP<br>DNS</div>
+<div class="topology-preview">
+    <img src="preuves/administrer/topologie-sae12.png" alt="Topologie SAE12 du réseau local">
+    <div class="image-caption">
+        Topologie SAE12 : routeur Freebox, équipements Ethernet, zone Wi-Fi routeur et zone répéteur.
+    </div>
 </div>
 ```
 
-</section>
+</header>
+
+<main>
 
 <section class="section" id="preuve">
     <h2>Preuve principale : SAE12 – Architecture du réseau local</h2>
@@ -409,6 +395,7 @@ footer {
 <div class="badges">
     <span class="badge">SAE12</span>
     <span class="badge">Topologie réseau</span>
+    <span class="badge">Freebox</span>
     <span class="badge">Adressage IP</span>
     <span class="badge">DHCP</span>
     <span class="badge">DNS</span>
@@ -420,29 +407,29 @@ footer {
 
 </section>
 
-<section class="section" id="ac">
+<section class="section" id="competences">
     <h2>Apprentissages critiques liés</h2>
 
 ```
-<div class="ac-grid">
-    <div class="ac-card">
+<div class="card-grid">
+    <div class="info-card">
         <b>AC11.03</b>
         <p>Configurer les fonctions de base du réseau local.</p>
     </div>
 
-    <div class="ac-card">
+    <div class="info-card">
         <b>AC11.04</b>
-        <p>Comprendre les rôles des systèmes et services liés au réseau.</p>
+        <p>Comprendre les systèmes et services nécessaires à la configuration réseau.</p>
     </div>
 
-    <div class="ac-card">
+    <div class="info-card">
         <b>AC11.05</b>
         <p>Identifier les dysfonctionnements du réseau local et savoir les signaler.</p>
     </div>
 
-    <div class="ac-card">
+    <div class="info-card">
         <b>AC11.06</b>
-        <p>Installer ou documenter un poste client dans un réseau.</p>
+        <p>Installer ou documenter un poste client dans une infrastructure réseau.</p>
     </div>
 </div>
 ```
@@ -461,9 +448,9 @@ footer {
 </p>
 
 <p>
-    J’ai compris qu’une documentation réseau doit être lisible, structurée et utile :
-    elle doit permettre à une autre personne de comprendre rapidement la structure du réseau
-    et les informations nécessaires pour une intervention.
+    J’ai aussi compris que la documentation réseau doit être claire et exploitable :
+    une autre personne doit pouvoir comprendre rapidement la structure du réseau,
+    les équipements utilisés et les informations techniques importantes.
 </p>
 ```
 
@@ -487,16 +474,29 @@ footer {
         le NAT, le Wi-Fi, le câblage et la topologie finale.
     </p>
 </div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 2 :</b>
+        <a href="preuves/administrer/topologie-sae12.png" target="_blank">
+            Image de la topologie réseau SAE12
+        </a>
+    </p>
+
+    <p>
+        Cette image permet de visualiser rapidement l’organisation du réseau :
+        routeur, zones Wi-Fi, répéteur, équipements Ethernet, téléphone fixe et appareils connectés.
+    </p>
+</div>
 ```
 
 </section>
 
+</main>
+
 <footer>
     Portfolio SAE25 – Compétence Administrer – Omed Gul Amini
 </footer>
-
-</div>
-</div>
 
 </body>
 </html>
