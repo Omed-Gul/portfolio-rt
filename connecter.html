@@ -284,6 +284,47 @@ main {
     font-weight: 700;
 }
 
+.media-proof {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.image-proof,
+.audio-proof {
+    background: rgba(113, 63, 18, 0.30);
+    border: 1px solid rgba(251, 191, 36, 0.32);
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.image-proof img {
+    width: 100%;
+    display: block;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    margin-bottom: 12px;
+}
+
+.audio-proof {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.audio-proof h3,
+.image-proof h3 {
+    color: #facc15;
+    margin-bottom: 10px;
+}
+
+audio {
+    width: 100%;
+    margin: 14px 0;
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -347,7 +388,8 @@ footer {
         padding-top: 45px;
     }
 
-    .card-grid {
+    .card-grid,
+    .media-proof {
         grid-template-columns: 1fr;
     }
 
@@ -436,6 +478,36 @@ footer {
     <span class="badge">Karplus-Strong</span>
     <span class="badge">Signal sonore</span>
     <span class="badge">Spectre fréquentiel</span>
+    <span class="badge">Audio WAV</span>
+</div>
+
+<div class="media-proof">
+    <div class="image-proof">
+        <h3>Résultats MATLAB</h3>
+        <img src="preuves/connecter/resultats-karplus.png" alt="Résultats MATLAB Karplus-Strong">
+        <p>
+            Cette image regroupe les graphiques générés avec MATLAB : signal temporel,
+            spectre fréquentiel, effet du filtrage et résultat de la synthèse sonore.
+        </p>
+    </div>
+
+    <div class="audio-proof">
+        <h3>Son généré avec MATLAB</h3>
+        <p>
+            Ce fichier audio est le résultat final généré par mon code MATLAB.
+            Il permet d’écouter directement la note ou la mélodie synthétisée.
+        </p>
+
+        <audio controls>
+            <source src="preuves/connecter/lospollosmusikosomed.wav" type="audio/wav">
+            Votre navigateur ne supporte pas la lecture audio.
+        </audio>
+
+        <p>
+            Le son montre concrètement le résultat du traitement : synthèse Karplus-Strong
+            et effet appliqué au signal.
+        </p>
+    </div>
 </div>
 
 
@@ -537,7 +609,35 @@ footer {
 <div class="proof">
     <p>
         <b>Preuve 2 :</b>
-        <a href="r204-voip.html">
+        <a href="preuves/connecter/resultats-karplus.png" target="_blank">
+            SAE22 – Image des résultats MATLAB
+        </a>
+    </p>
+
+    <p>
+        Cette image montre les résultats visuels de mon code : formes temporelles,
+        spectres fréquentiels, filtrage et synthèse du signal sonore.
+    </p>
+</div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 3 :</b>
+        <a href="preuves/connecter/lospollosmusikosomed.wav" target="_blank">
+            SAE22 – Audio généré avec MATLAB
+        </a>
+    </p>
+
+    <p>
+        Ce fichier WAV permet d’écouter le son produit par mon programme MATLAB.
+        C’est une preuve concrète du résultat final de la synthèse sonore.
+    </p>
+</div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 4 :</b>
+        <a href="r204-voip.html" target="_blank">
             TP R204 VoIP – Cisco CallManager, Cisco Unity Connection, téléphones IP, PoE, DHCP et VLAN voix
         </a>
     </p>
@@ -548,7 +648,6 @@ footer {
         DHCP et séparation du trafic voix avec un VLAN dédié.
     </p>
 </div>
-
 
 </section>
 
