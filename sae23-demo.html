@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Démo SAE23 - Vendée Globe</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #05030a;
+    color: #f5f3ff;
+    line-height: 1.6;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.25), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.25), transparent 30%),
+        linear-gradient(135deg, #05030a, #0d0718 55%, #06140d);
+    z-index: -2;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(5, 3, 10, 0.84);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.nav-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #86efac;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: #86efac;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #c4b5fd;
+    text-decoration: underline;
+}
+
+.hero {
+    max-width: 1180px;
+    margin: auto;
+    padding: 70px 22px 30px;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(34, 197, 94, 0.50);
+    color: #86efac;
+    background: rgba(22, 101, 52, 0.20);
+    border-radius: 999px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 18px;
+    color: white;
+}
+
+.hero p {
+    max-width: 880px;
+    color: #ddd6fe;
+    font-size: 19px;
+}
+
+main {
+    max-width: 1180px;
+    margin: auto;
+    padding: 20px 22px 70px;
+}
+
+.section {
+    background: rgba(10, 8, 20, 0.84);
+    border: 1px solid rgba(34, 197, 94, 0.22);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 46px rgba(0,0,0,0.32);
+}
+
+.section h2 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.section p {
+    color: #ddd6fe;
+    margin-bottom: 14px;
+}
+
+.architecture {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.step {
+    background: rgba(88, 28, 135, 0.24);
+    border: 1px solid rgba(167, 139, 250, 0.30);
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+    transition: 0.25s;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    border-color: rgba(34, 197, 94, 0.65);
+}
+
+.step strong {
+    display: block;
+    color: #86efac;
+    margin-bottom: 8px;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.tab {
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    background: rgba(34, 197, 94, 0.10);
+    color: #dcfce7;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.tab:hover,
+.tab.active {
+    background: linear-gradient(135deg, #22c55e, #8b5cf6);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.demo-box {
+    background: rgba(3, 7, 18, 0.82);
+    border: 1px solid rgba(34, 197, 94, 0.30);
+    border-radius: 20px;
+    padding: 22px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    min-width: 620px;
+}
+
+th {
+    color: #86efac;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: #f5f3ff;
+}
+
+tr:hover {
+    background: rgba(34, 197, 94, 0.08);
+}
+
+.code-panel {
+    background: rgba(3, 7, 18, 0.90);
+    border: 1px solid rgba(167, 139, 250, 0.30);
+    border-radius: 18px;
+    padding: 20px;
+    font-family: Consolas, "Courier New", monospace;
+    color: #bbf7d0;
+    overflow-x: auto;
+    margin-top: 18px;
+}
+
+.code-panel span {
+    color: #c4b5fd;
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    margin: 4px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.30);
+    color: #dcfce7;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.note {
+    background: rgba(88, 28, 135, 0.22);
+    border-left: 4px solid #86efac;
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 34px 20px;
+    color: #a7f3d0;
+    opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+    .architecture {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">SAE23 · Démo Vendée Globe</div>
+        <a href="programmer.html">← Retour à Programmer</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <span class="kicker">Preuve visible · Compétence Programmer</span>
+    <h1>Démonstration SAE23 – Application Vendée Globe</h1>
+    <p>
+        Cette page montre le principe de mon projet SAE23 : une application qui récupère des données
+        depuis une base, les expose avec une API REST en JSON, puis les affiche dans une interface web.
+    </p>
+</header>
+
+<main>
+
+<section class="section">
+    <h2>Objectif du projet</h2>
+
+
+<p>
+    L’objectif de la SAE23 était de créer une application complète autour des données du Vendée Globe.
+    Le projet reliait une base de données, un serveur Java, une API REST et une interface web.
+</p>
+
+<p>
+    Sur GitHub Pages, je ne peux pas exécuter PostgreSQL, Java ou Tomcat. Cette page est donc une
+    démonstration statique qui reproduit le principe visuel et logique du projet.
+</p>
+
+<div>
+    <span class="badge">PostgreSQL</span>
+    <span class="badge">SQL</span>
+    <span class="badge">Java</span>
+    <span class="badge">Tomcat</span>
+    <span class="badge">API REST</span>
+    <span class="badge">JSON</span>
+    <span class="badge">HTML</span>
+    <span class="badge">CSS</span>
+    <span class="badge">JavaScript</span>
+</div>
+
+
+</section>
+
+<section class="section">
+    <h2>Architecture de l’application</h2>
+
+
+<div class="architecture">
+    <div class="step">
+        <strong>1. PostgreSQL</strong>
+        Base de données avec les tables skipper, bateau et classement.
+    </div>
+
+    <div class="step">
+        <strong>2. SQL</strong>
+        Requêtes pour lire, trier et filtrer les données.
+    </div>
+
+    <div class="step">
+        <strong>3. Java/Tomcat</strong>
+        Serveur qui récupère les données et prépare les réponses.
+    </div>
+
+    <div class="step">
+        <strong>4. API REST</strong>
+        Points d’accès comme /classement, /skippers et /bateaux.
+    </div>
+
+    <div class="step">
+        <strong>5. Web</strong>
+        JavaScript récupère le JSON et remplit les tableaux HTML.
+    </div>
+</div>
+
+<div class="note">
+    Idée principale : les données ne sont pas écrites à la main dans la page.
+    Elles viennent normalement de la base via une API, puis JavaScript les affiche dynamiquement.
+</div>
+
+
+</section>
+
+<section class="section">
+    <h2>Démo interactive</h2>
+
+
+<p>
+    Les boutons ci-dessous simulent les différentes pages de l’application :
+    classement, skippers et bateaux.
+</p>
+
+<div class="tabs">
+    <button class="tab active" onclick="showData('classement')">Classement</button>
+    <button class="tab" onclick="showData('skippers')">Skippers</button>
+    <button class="tab" onclick="showData('bateaux')">Bateaux</button>
+</div>
+
+<div class="demo-box">
+    <h3 id="table-title">Classement</h3>
+    <div id="table-zone"></div>
+</div>
+
+
+</section>
+
+<section class="section">
+    <h2>Exemple du fonctionnement JavaScript</h2>
+
+
+<p>
+    Dans le vrai projet, JavaScript utilisait fetch pour appeler l’API REST.
+    Ici, les données JSON sont simulées directement dans la page pour que la démonstration fonctionne sur GitHub Pages.
+</p>
+
+<div class="code-panel">
+    fetch("/api/classement")<br>
+    &nbsp;&nbsp;.then(response =&gt; response.json())<br>
+    &nbsp;&nbsp;.then(data =&gt; afficherTableau(data));<br>
+    <br>
+    <span>// Résultat attendu : les données JSON sont affichées dans un tableau HTML.</span>
+</div>
+
+
+</section>
+
+<section class="section">
+    <h2>Ce que cette preuve montre</h2>
+
+
+<p>
+    Cette démonstration montre que j’ai compris la logique d’une application web complète :
+    les données sont stockées dans une base, récupérées par un serveur, envoyées au format JSON,
+    puis affichées par JavaScript dans une page web.
+</p>
+
+<p>
+    Elle illustre le lien avec la compétence Programmer : utiliser des outils informatiques,
+    comprendre une architecture web, manipuler des données et produire une interface exploitable.
+</p>
+
+
+</section>
+
+</main>
+
+<footer>
+    Portfolio SAE25 – Démo SAE23 – Omed Gul Amini
+</footer>
+
+<script>
+const data = {
+    classement: [
+        { position: 1, skipper: "Skipper A", bateau: "IMOCA Alpha", temps: "80 j 03 h 44 min", statut: "Arrivé" },
+        { position: 2, skipper: "Skipper B", bateau: "IMOCA Bravo", temps: "80 j 06 h 12 min", statut: "Arrivé" },
+        { position: 3, skipper: "Skipper C", bateau: "IMOCA Charlie", temps: "81 j 01 h 05 min", statut: "Arrivé" },
+        { position: 4, skipper: "Skipper D", bateau: "IMOCA Delta", temps: "En course", statut: "Navigation" }
+    ],
+    skippers: [
+        { nom: "Skipper A", nationalite: "France", age: 34, bateau: "IMOCA Alpha" },
+        { nom: "Skipper B", nationalite: "France", age: 41, bateau: "IMOCA Bravo" },
+        { nom: "Skipper C", nationalite: "Suisse", age: 38, bateau: "IMOCA Charlie" },
+        { nom: "Skipper D", nationalite: "Espagne", age: 36, bateau: "IMOCA Delta" }
+    ],
+    bateaux: [
+        { nom: "IMOCA Alpha", type: "Monocoque", longueur: "18,28 m", annee: 2021 },
+        { nom: "IMOCA Bravo", type: "Monocoque", longueur: "18,28 m", annee: 2020 },
+        { nom: "IMOCA Charlie", type: "Monocoque", longueur: "18,28 m", annee: 2019 },
+        { nom: "IMOCA Delta", type: "Monocoque", longueur: "18,28 m", annee: 2022 }
+    ]
+};
+
+const titles = {
+    classement: "Classement",
+    skippers: "Skippers",
+    bateaux: "Bateaux"
+};
+
+function showData(type) {
+    document.getElementById("table-title").textContent = titles[type];
+
+    const buttons = document.querySelectorAll(".tab");
+    buttons.forEach(button => button.classList.remove("active"));
+
+    if (type === "classement") {
+        buttons[0].classList.add("active");
+    }
+
+    if (type === "skippers") {
+        buttons[1].classList.add("active");
+    }
+
+    if (type === "bateaux") {
+        buttons[2].classList.add("active");
+    }
+
+    const rows = data[type];
+    const keys = Object.keys(rows[0]);
+
+    let html = "<table><thead><tr>";
+
+    keys.forEach(key => {
+        html += "<th>" + key.toUpperCase() + "</th>";
+    });
+
+    html += "</tr></thead><tbody>";
+
+    rows.forEach(row => {
+        html += "<tr>";
+        keys.forEach(key => {
+            html += "<td>" + row[key] + "</td>";
+        });
+        html += "</tr>";
+    });
+
+    html += "</tbody></table>";
+
+    document.getElementById("table-zone").innerHTML = html;
+}
+
+showData("classement");
+</script>
+
+</body>
+</html>
