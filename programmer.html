@@ -1,205 +1,622 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Programmer - Portfolio R&T</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
-    background: #f3f5f7;
-    color: #222;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header {
-    background: #1f2937;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #05030a;
+    color: #f5f3ff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.28), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.26), transparent 30%),
+        radial-gradient(circle at 55% 95%, rgba(16, 185, 129, 0.16), transparent 35%),
+        linear-gradient(135deg, #05030a, #0d0718 55%, #06140d);
+    z-index: -2;
+}
+
+.code-rain {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.18;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 48px,
+            rgba(34, 197, 94, 0.13) 49px,
+            rgba(34, 197, 94, 0.13) 50px
+        );
+    animation: moveCode 18s linear infinite;
+}
+
+@keyframes moveCode {
+    from { transform: translateY(0); }
+    to { transform: translateY(80px); }
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(5, 3, 10, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.nav-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #86efac;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #f5f3ff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    opacity: 0.88;
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    color: #a78bfa;
+}
+
+.hero {
+    max-width: 1180px;
+    margin: auto;
+    padding: 75px 22px 35px;
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    gap: 34px;
+    align-items: center;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(34, 197, 94, 0.50);
+    color: #86efac;
+    background: rgba(22, 101, 52, 0.20);
+    border-radius: 999px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.02;
+    margin-bottom: 20px;
     color: white;
-    padding: 35px;
-    text-align: center;
+}
+
+.hero p {
+    color: #ddd6fe;
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 900;
+    transition: 0.25s;
+}
+
+.btn-main {
+    background: linear-gradient(135deg, #22c55e, #8b5cf6);
+    color: white;
+    box-shadow: 0 0 26px rgba(34, 197, 94, 0.32);
+}
+
+.btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 34px rgba(139, 92, 246, 0.50);
+}
+
+.btn-ghost {
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    color: #f5f3ff;
+    background: rgba(255,255,255,0.05);
+}
+
+.btn-ghost:hover {
+    transform: translateY(-3px);
+    background: rgba(139, 92, 246, 0.12);
+}
+
+.terminal {
+    border-radius: 24px;
+    border: 1px solid rgba(34, 197, 94, 0.32);
+    background: rgba(3, 7, 18, 0.88);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.52);
+    overflow: hidden;
+    animation: floatPanel 4s ease-in-out infinite;
+}
+
+@keyframes floatPanel {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.terminal-top {
+    height: 44px;
+    background: rgba(15, 23, 42, 0.95);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    border-bottom: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.red { background: #ef4444; }
+.yellow { background: #f59e0b; }
+.green { background: #22c55e; }
+
+.terminal-body {
+    padding: 22px;
+    font-family: Consolas, "Courier New", monospace;
+    color: #bbf7d0;
+    min-height: 300px;
+}
+
+.line {
+    margin-bottom: 12px;
+}
+
+.prompt {
+    color: #a78bfa;
+    font-weight: 900;
+}
+
+.comment {
+    color: #94a3b8;
+}
+
+.keyword {
+    color: #86efac;
+}
+
+.value {
+    color: #c4b5fd;
 }
 
 main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+    max-width: 1180px;
+    margin: auto;
+    padding: 20px 22px 70px;
 }
 
 .section {
-    background: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: rgba(10, 8, 20, 0.82);
+    border: 1px solid rgba(34, 197, 94, 0.20);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 46px rgba(0,0,0,0.32);
+    backdrop-filter: blur(14px);
+    animation: appear 0.75s ease both;
 }
 
-h2 {
-    color: #1f2937;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 8px;
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section h2 {
+    color: #ffffff;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.section p {
+    color: #ddd6fe;
+    margin-bottom: 14px;
+}
+
+.badges {
+    margin-top: 14px;
 }
 
 .badge {
     display: inline-block;
-    background: #e5e7eb;
-    padding: 6px 10px;
-    border-radius: 8px;
+    padding: 7px 12px;
+    border-radius: 999px;
     margin: 4px;
-    font-size: 14px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.30);
+    color: #dcfce7;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.info-card {
+    background: rgba(88, 28, 135, 0.20);
+    border: 1px solid rgba(167, 139, 250, 0.26);
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.25s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(34, 197, 94, 0.65);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+}
+
+.info-card b {
+    color: #86efac;
+}
+
+.proof {
+    background: rgba(6, 78, 59, 0.22);
+    border: 1px solid rgba(34, 197, 94, 0.32);
+    border-radius: 18px;
+    padding: 22px;
+    margin-top: 14px;
+    transition: 0.25s;
+}
+
+.proof:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.38);
 }
 
 a {
-    color: #2563eb;
-    font-weight: bold;
+    color: #86efac;
+    font-weight: 900;
     text-decoration: none;
 }
 
 a:hover {
+    color: #c4b5fd;
     text-decoration: underline;
 }
+
+footer {
+    text-align: center;
+    padding: 34px 20px;
+    color: #a7f3d0;
+    opacity: 0.8;
+}
+
+@media (max-width: 950px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
 </style>
+
 </head>
 
 <body>
 
-<header>
-    <h1>Compétence 3 – Créer des outils et applications informatiques pour les R&T</h1>
-    <p>Niveau 1 : S’intégrer dans un service informatique</p>
+<div class="code-rain"></div>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">PROGRAMMER · WEB · API · DONNÉES</div>
+        <div class="nav-links">
+            <a href="#sae23">SAE23</a>
+            <a href="#sae13">SAE13</a>
+            <a href="#ac">Apprentissages</a>
+            <a href="#documents">Documents</a>
+            <a href="index.html">Retour</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div>
+        <span class="kicker">Compétence 3 · S’intégrer dans un service informatique</span>
+        <h1>Créer des outils et applications informatiques</h1>
+        <p>
+            Cette page présente mes preuves liées au développement informatique :
+            application web, base de données, API, Java, SQL, interface web et traitement de données avec MATLAB.
+        </p>
+
+
+    <div class="hero-actions">
+        <a class="btn btn-main" href="#documents">Ouvrir les preuves</a>
+        <a class="btn btn-ghost" href="index.html">← Retour au portfolio</a>
+    </div>
+</div>
+
+<div class="terminal">
+    <div class="terminal-top">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+    </div>
+
+    <div class="terminal-body">
+        <div class="line"><span class="prompt">omed@portfolio</span>:~$ ouvrir competence_programmer</div>
+        <div class="line"><span class="comment"># Projet principal : SAE23 Vendée Globe</span></div>
+        <div class="line"><span class="keyword">database</span> = <span class="value">PostgreSQL + SQL</span></div>
+        <div class="line"><span class="keyword">backend</span> = <span class="value">Java + Tomcat + API REST</span></div>
+        <div class="line"><span class="keyword">frontend</span> = <span class="value">HTML + CSS + JavaScript + Bootstrap</span></div>
+        <div class="line"><span class="keyword">data</span> = <span class="value">JSON + fetch + DOM</span></div>
+        <div class="line"><span class="prompt">status</span>: preuve prête pour SAE25</div>
+    </div>
+</div>
+
+
 </header>
 
 <main>
 
-<div class="section">
+<section class="section" id="sae23">
     <h2>Preuve principale : SAE23 – Application Vendée Globe</h2>
-    <p>
-        Dans cette SAE, j’ai travaillé sur une application web complète autour des données du Vendée Globe.
-        Le projet était organisé en plusieurs parties : base de données, requêtes SQL, backend avec API REST,
-        puis frontend web.
-    </p>
 
-    <p>
-        Ce projet m’a permis de comprendre l’architecture d’une application complète :
-        une base PostgreSQL stocke les données, un serveur Java/Tomcat fournit des réponses JSON,
-        et une interface web utilise HTML, CSS, JavaScript et Bootstrap pour afficher les résultats.
-    </p>
 
-    <p><b>Éléments travaillés :</b></p>
+<p>
+    La SAE23 est ma preuve principale pour la compétence Programmer.
+    Le projet consistait à construire une application complète autour des données du Vendée Globe.
+</p>
+
+<p>
+    Le travail était organisé en plusieurs parties : base de données PostgreSQL,
+    requêtes SQL, développement Java, API REST avec Tomcat, échange de données en JSON,
+    puis interface web avec HTML, CSS, JavaScript et Bootstrap.
+</p>
+
+<div class="badges">
+    <span class="badge">SAE23</span>
     <span class="badge">PostgreSQL</span>
     <span class="badge">SQL</span>
     <span class="badge">Java</span>
     <span class="badge">Tomcat</span>
     <span class="badge">API REST</span>
     <span class="badge">JSON</span>
-    <span class="badge">HTML</span>
-    <span class="badge">CSS</span>
     <span class="badge">JavaScript</span>
     <span class="badge">Bootstrap</span>
 </div>
 
-<div class="section">
-    <h2>Preuves complémentaires : SAE13 – Données audio et image</h2>
-    <p>
-        La SAE13 complète cette compétence car elle montre ma capacité à manipuler des données par programme.
-        Dans l’activité audio, j’ai utilisé MATLAB pour lire un fichier audio, tracer le signal, segmenter des phonèmes,
-        reconstruire un mot et exporter un nouveau fichier audio.
-    </p>
 
-    <p>
-        Dans l’activité image, j’ai utilisé MATLAB pour lire une image, la convertir en niveaux de gris,
-        extraire ou déplacer des zones, corriger l’image avec des transformations et enregistrer le résultat final.
-    </p>
+</section>
 
-    <p><b>Éléments travaillés :</b></p>
+<section class="section" id="sae13">
+    <h2>Preuve complémentaire : SAE13 – Traitement audio et image avec MATLAB</h2>
+
+
+<p>
+    La SAE13 complète cette compétence, car elle montre mon utilisation d’outils informatiques
+    pour traiter des données numériques.
+</p>
+
+<p>
+    Dans l’activité audio, j’ai manipulé un fichier sonore avec MATLAB :
+    lecture, affichage du signal, découpage de phonèmes, reconstruction d’un mot et export audio.
+    Dans l’activité image, j’ai travaillé sur les pixels, les couleurs, les zones d’image,
+    le découpage et la reconstruction d’une image.
+</p>
+
+<div class="badges">
+    <span class="badge">SAE13</span>
     <span class="badge">MATLAB</span>
     <span class="badge">Audio</span>
     <span class="badge">Image</span>
-    <span class="badge">Segmentation</span>
-    <span class="badge">Transformation de données</span>
+    <span class="badge">Données numériques</span>
+    <span class="badge">Traitement</span>
 </div>
 
-<div class="section">
+
+</section>
+
+<section class="section" id="ac">
     <h2>Apprentissages critiques liés</h2>
-    <ul>
-        <li><b>AC13.01 :</b> Utiliser un système informatique et ses outils.</li>
-        <li><b>AC13.02 :</b> Lire, exécuter, corriger et modifier un programme.</li>
-        <li><b>AC13.03 :</b> Traduire un algorithme dans un langage et un environnement donné.</li>
-        <li><b>AC13.04 :</b> Connaître l’architecture et les technologies d’un site Web.</li>
-        <li><b>AC13.05 :</b> Choisir les mécanismes de gestion de données adaptés.</li>
-        <li><b>AC13.06 :</b> S’intégrer dans un environnement de développement et de travail collaboratif.</li>
-    </ul>
+
+
+<div class="card-grid">
+    <div class="info-card">
+        <b>AC13.01</b>
+        <p>Utiliser un système informatique et ses outils.</p>
+    </div>
+
+    <div class="info-card">
+        <b>AC13.02</b>
+        <p>Lire, exécuter, corriger et modifier un programme.</p>
+    </div>
+
+    <div class="info-card">
+        <b>AC13.04</b>
+        <p>Connaître l’architecture et les technologies d’un site web.</p>
+    </div>
+
+    <div class="info-card">
+        <b>AC13.05</b>
+        <p>Choisir et justifier des mécanismes de gestion de données.</p>
+    </div>
 </div>
 
-<div class="section">
+
+</section>
+
+<section class="section">
     <h2>Ce que j’ai appris</h2>
-    <p>
-        J’ai compris qu’une application informatique ne se résume pas au code visible dans une page web.
-        Elle repose sur plusieurs couches : la base de données, le backend, l’API, le format JSON et le frontend.
-        J’ai aussi appris à organiser mes fichiers, tester progressivement, corriger les erreurs et relier plusieurs technologies ensemble.
-    </p>
-</div>
 
-<div class="section">
+
+<p>
+    J’ai compris qu’une application informatique n’est pas seulement une page web.
+    Elle repose sur plusieurs couches : une base de données, un serveur, une API,
+    un format d’échange de données et une interface utilisateur.
+</p>
+
+<p>
+    J’ai aussi compris l’importance de structurer son travail, documenter les fichiers,
+    tester les différentes parties et relier le code aux besoins de l’utilisateur.
+</p>
+
+
+</section>
+
+<section class="section" id="documents">
     <h2>Preuves déposées</h2>
 
+
+<div class="proof">
     <p>
         <b>Preuve 1 :</b>
         <a href="preuves/programmer/SAE22PART1 (1).zip" target="_blank">
-            SAE23 – Partie 1 : base de données / SQL
+            SAE23 – Partie 1 : base de données et SQL
         </a>
     </p>
-
     <p>
-        <b>Preuve 2 :</b>
-        <a href="preuves/programmer/SAE22PART2 (1).zip" target="_blank">
-            SAE23 – Partie 2 : Java / classes métier
-        </a>
-    </p>
-
-    <p>
-        <b>Preuve 3 :</b>
-        <a href="preuves/programmer/SAE22PART3 (1).zip" target="_blank">
-            SAE23 – Partie 3 : API / serveur
-        </a>
-    </p>
-
-    <p>
-        <b>Preuve 4 :</b>
-        <a href="preuves/programmer/SAE22PART4 (1).zip" target="_blank">
-            SAE23 – Partie 4 : frontend web
-        </a>
-    </p>
-
-    <p>
-        Ces preuves montrent la construction progressive d’une application complète :
-        modélisation des données, requêtes SQL, backend Java, API REST, réponses JSON
-        et interface web.
-    </p>
-
-    <p>
-        <b>Preuve complémentaire 1 :</b>
-        <a href="preuves/programmer/Présentation de activité 1 de SAE13 pdf.pdf" target="_blank">
-            SAE13 – Activité audio MATLAB
-        </a>
-    </p>
-
-    <p>
-        <b>Preuve complémentaire 2 :</b>
-        <a href="preuves/programmer/Présentation de Activité 2.pdf" target="_blank">
-            SAE13 – Activité image MATLAB
-        </a>
-    </p>
-
-    <p>
-        Ces preuves complémentaires montrent ma capacité à lire, modifier, transformer
-        et enregistrer des données audio et image avec MATLAB.
-    </p>
-
-    <p>
-        <a href="index.html">← Retour au portfolio</a>
+        Cette archive contient la première partie du projet Vendée Globe, liée à la base de données,
+        aux tables et aux requêtes SQL.
     </p>
 </div>
 
+<div class="proof">
+    <p>
+        <b>Preuve 2 :</b>
+        <a href="preuves/programmer/SAE22PART2 (1).zip" target="_blank">
+            SAE23 – Partie 2 : Java et classes métier
+        </a>
+    </p>
+    <p>
+        Cette archive contient la partie Java du projet, avec la logique de traitement
+        et l’organisation du code.
+    </p>
+</div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 3 :</b>
+        <a href="preuves/programmer/SAE22PART3 (1).zip" target="_blank">
+            SAE23 – Partie 3 : API REST et serveur
+        </a>
+    </p>
+    <p>
+        Cette archive contient la partie serveur/API permettant d’exposer les données
+        de l’application au format JSON.
+    </p>
+</div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 4 :</b>
+        <a href="preuves/programmer/SAE22PART4 (1).zip" target="_blank">
+            SAE23 – Partie 4 : interface web
+        </a>
+    </p>
+    <p>
+        Cette archive contient la partie frontend : pages web, JavaScript, affichage dynamique
+        et interaction avec les données.
+    </p>
+</div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 5 :</b>
+        <a href="preuves/programmer/Présentation de activité 1 de SAE13 pdf.pdf" target="_blank">
+            SAE13 – Activité audio
+        </a>
+    </p>
+    <p>
+        Cette preuve montre l’utilisation de MATLAB pour lire, afficher, découper,
+        reconstruire et exporter un signal audio.
+    </p>
+</div>
+
+<div class="proof">
+    <p>
+        <b>Preuve 6 :</b>
+        <a href="preuves/programmer/Présentation de Activité 2.pdf" target="_blank">
+            SAE13 – Activité image
+        </a>
+    </p>
+    <p>
+        Cette preuve montre le traitement d’une image numérique :
+        pixels, couleurs, découpage, modification et reconstruction.
+    </p>
+</div>
+
+
+</section>
+
 </main>
+
+<footer>
+    Portfolio SAE25 – Compétence Programmer – Omed Gul Amini
+</footer>
 
 </body>
 </html>
