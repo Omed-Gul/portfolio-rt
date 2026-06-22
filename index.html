@@ -1,60 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio R&T - Omed Gul</title>
+<title>Portfolio R&T - Omed Gul Amini</title>
+
 <style>
 body {
-font-family: Arial;
-margin: 40px;
-background: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f3f5f7;
+    color: #222;
 }
 
-h1 {
-color: #111;
+header {
+    background: #1f2937;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
 }
 
 .section {
-background: white;
-padding: 20px;
-margin-bottom: 20px;
-border-radius: 10px;
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 h2 {
-border-bottom: 1px solid #ddd;
-padding-bottom: 5px;
-color: #2c3e50;
+    color: #1f2937;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 8px;
+}
+
+.badge {
+    display: inline-block;
+    background: #e5e7eb;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 4px;
+    font-size: 14px;
+}
+
+a {
+    color: #2563eb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.objectif {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #666;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Portfolio - Réseaux & Télécommunications</h1>
-<p><b>Nom:</b> Omed Gul Amini</p>
-<p><b>Formation:</b> BUT R&T 1ère année</p>
+<header>
+    <h1>Portfolio – BUT Réseaux & Télécommunications</h1>
+    <p>Omed Gul Amini – 1ère année R&T</p>
+</header>
+
+<main>
 
 <div class="section">
-<h2>🟦 Administrer les réseaux</h2>
-<p><b>SAÉ12:</b> Topologie réseau domestique</p>
-<p>Compétences: LAN, IP addressing, réseau local</p>
-<p>Outils: Packet Tracer, draw.io</p>
+    <h2>Objectif du portfolio</h2>
+    <p class="objectif">
+        Ce portfolio présente des preuves issues de ma première année de BUT Réseaux & Télécommunications.
+        L’objectif est de montrer ma progression dans les trois compétences principales :
+        administrer les réseaux, connecter les systèmes et programmer des outils informatiques.
+    </p>
 </div>
 
 <div class="section">
-<h2>🟨 Connecter les systèmes</h2>
-<p><b>SAÉ22:</b> Analyse de signaux (MATLAB)</p>
-<p>Compétences: FFT, filtrage, synthèse sonore</p>
-<p>Outils: MATLAB, analyse fréquentielle</p>
+    <h2>Compétence 1 – Administrer les réseaux et l’Internet</h2>
+
+    <p><b>Niveau visé :</b> Assister l’administrateur du réseau.</p>
+
+    <p>
+        Pour cette compétence, j’utilise principalement la SAE12 sur l’architecture de mon réseau local.
+        Ce travail m’a permis de représenter un réseau domestique, d’identifier les équipements,
+        d’expliquer le rôle du DHCP, du DNS, du NAT, du Wi-Fi, du câblage et de l’adressage IP.
+    </p>
+
+    <p><b>Preuves principales :</b></p>
+    <span class="badge">SAE12</span>
+    <span class="badge">Topologie réseau</span>
+    <span class="badge">Plan d’adressage IP</span>
+    <span class="badge">DHCP / DNS / NAT</span>
+
+    <p>
+        <a href="https://github.com/Omed-Gul/portfolio-rt/tree/main/preuves/administrer" target="_blank">
+            Voir les preuves Administrer
+        </a>
+    </p>
 </div>
 
 <div class="section">
-<h2>🟩 Programmer des applications</h2>
-<p><b>SAÉ23:</b> Application web complète</p>
-<p>Compétences: API REST, base de données, frontend</p>
-<p>Outils: Java, PostgreSQL, HTML, JS</p>
+    <h2>Compétence 2 – Connecter les entreprises et les usagers</h2>
+
+    <p><b>Niveau visé :</b> Découvrir les transmissions et la ToIP.</p>
+
+    <p>
+        Pour cette compétence, j’utilise la SAE22 sur la mesure et la caractérisation d’un signal.
+        Le projet repose sur MATLAB, l’analyse fréquentielle, la FFT, le filtrage passe-bas
+        et la synthèse sonore avec l’algorithme de Karplus-Strong.
+        J’ajoute aussi le TP R204 sur la VoIP pour montrer le lien avec la téléphonie IP.
+    </p>
+
+    <p><b>Preuves principales :</b></p>
+    <span class="badge">SAE22</span>
+    <span class="badge">MATLAB</span>
+    <span class="badge">FFT</span>
+    <span class="badge">Filtrage</span>
+    <span class="badge">Karplus-Strong</span>
+    <span class="badge">R204 VoIP</span>
+
+    <p>
+        <a href="https://github.com/Omed-Gul/portfolio-rt/tree/main/preuves/connecter" target="_blank">
+            Voir les preuves Connecter
+        </a>
+    </p>
 </div>
+
+<div class="section">
+    <h2>Compétence 3 – Créer des outils et applications informatiques pour les R&T</h2>
+
+    <p><b>Niveau visé :</b> S’intégrer dans un service informatique.</p>
+
+    <p>
+        Pour cette compétence, j’utilise principalement la SAE23 sur l’application Vendée Globe.
+        Ce projet m’a permis de travailler sur une base de données PostgreSQL,
+        des requêtes SQL, une API REST avec Java/Tomcat, des réponses JSON,
+        et une interface web en HTML, CSS, JavaScript et Bootstrap.
+    </p>
+
+    <p>
+        J’ajoute aussi des preuves issues de la SAE13, où j’ai manipulé des données audio
+        et image avec MATLAB. Cela montre ma progression dans la lecture, la modification
+        et la transformation de données par programme.
+    </p>
+
+    <p><b>Preuves principales :</b></p>
+    <span class="badge">SAE23</span>
+    <span class="badge">PostgreSQL</span>
+    <span class="badge">SQL</span>
+    <span class="badge">Java / Tomcat</span>
+    <span class="badge">API REST</span>
+    <span class="badge">JSON</span>
+    <span class="badge">HTML / CSS / JS</span>
+    <span class="badge">SAE13 MATLAB</span>
+
+    <p>
+        <a href="https://github.com/Omed-Gul/portfolio-rt/tree/main/preuves/programmer" target="_blank">
+            Voir les preuves Programmer
+        </a>
+    </p>
+</div>
+
+<div class="section">
+    <h2>Bilan personnel</h2>
+    <p>
+        Cette première année m’a permis de découvrir plusieurs dimensions des Réseaux & Télécommunications :
+        l’architecture réseau, les transmissions, la téléphonie IP, les systèmes, les bases de données
+        et le développement web. Mon objectif est maintenant de renforcer mes bases techniques
+        pour devenir plus autonome dans l’administration réseau et le développement d’outils informatiques.
+    </p>
+</div>
+
+</main>
+
+<footer>
+    Portfolio SAE25 – BUT R&T 1ère année
+</footer>
 
 </body>
 </html>
