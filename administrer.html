@@ -1,90 +1,295 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Administrer - Portfolio R&T</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f3f5f7;
-    color: #222;
+    background: #020617;
+    color: #e5e7eb;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.38), transparent 30%),
+        radial-gradient(circle at 80% 15%, rgba(14, 165, 233, 0.22), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.20), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a 60%, #111827);
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    animation: gridMove 18s linear infinite;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 40px 40px; }
 }
 
 header {
-    background: #1f2937;
-    color: white;
-    padding: 35px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 60px 20px;
+}
+
+.hero {
+    max-width: 900px;
+    animation: fadeUp 1s ease forwards;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid rgba(96, 165, 250, 0.5);
+    border-radius: 999px;
+    color: #93c5fd;
+    background: rgba(15, 23, 42, 0.65);
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #ffffff, #93c5fd, #2563eb);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.45);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #e5e7eb;
+    background: rgba(255,255,255,0.06);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.12);
 }
 
 main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto 70px;
 }
 
 .section {
-    background: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    transform: translateY(25px);
+    animation: fadeUp 0.8s ease forwards;
 }
 
-h2 {
-    color: #1f2937;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 8px;
+.section:nth-child(1) { animation-delay: 0.1s; }
+.section:nth-child(2) { animation-delay: 0.2s; }
+.section:nth-child(3) { animation-delay: 0.3s; }
+.section:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section h2 {
+    color: #f8fafc;
+    margin-bottom: 16px;
+    font-size: 28px;
+}
+
+.section p {
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.badges {
+    margin-top: 16px;
 }
 
 .badge {
     display: inline-block;
-    background: #e5e7eb;
+    background: rgba(96, 165, 250, 0.12);
+    color: #bfdbfe;
+    border: 1px solid rgba(96, 165, 250, 0.25);
     padding: 6px 10px;
-    border-radius: 8px;
-    margin: 4px;
-    font-size: 14px;
+    border-radius: 999px;
+    margin: 4px 3px;
+    font-size: 13px;
+}
+
+.ac-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 15px;
+}
+
+.ac-item {
+    padding: 16px;
+    border-left: 3px solid #2563eb;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    color: #cbd5e1;
+}
+
+.proof-card {
+    background: rgba(2, 6, 23, 0.65);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    border-radius: 18px;
+    padding: 22px;
+    margin-top: 15px;
+    transition: 0.25s;
+}
+
+.proof-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(96, 165, 250, 0.7);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
 }
 
 a {
-    color: #2563eb;
+    color: #60a5fa;
     font-weight: bold;
     text-decoration: none;
 }
 
 a:hover {
+    color: #93c5fd;
     text-decoration: underline;
 }
+
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+    header {
+        min-height: 55vh;
+    }
+
+    .section {
+        padding: 22px;
+    }
+}
 </style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>Compétence 1 – Administrer les réseaux et l’Internet</h1>
-    <p>Niveau 1 : Assister l’administrateur du réseau</p>
+    <div class="hero">
+        <div class="hero-badge">Compétence 1 · Administrer</div>
+        <h1>Administrer les réseaux et l’Internet</h1>
+        <p>
+            Niveau 1 : assister l’administrateur du réseau en comprenant l’architecture,
+            les équipements, les services et la documentation d’un réseau local.
+        </p>
+
+```
+    <div class="hero-buttons">
+        <a class="btn btn-primary" href="#preuve">Voir la preuve</a>
+        <a class="btn btn-secondary" href="index.html">← Retour au portfolio</a>
+    </div>
+</div>
+```
+
 </header>
 
 <main>
 
-<div class="section">
+<section class="section" id="preuve">
     <h2>Preuve principale : SAE12 – Architecture du réseau local</h2>
-    <p>
-        Dans cette SAE, j’ai réalisé la documentation de mon réseau domestique.
-        Le travail consistait à identifier les équipements, représenter la topologie,
-        expliquer le câblage, l’adressage IP, le DHCP, le DNS, le NAT, le Wi-Fi
-        et les fonctions principales de la Freebox.
-    </p>
 
-    <p>
-        Cette preuve montre ma capacité à observer une infrastructure réseau,
-        la représenter clairement, comprendre le rôle des équipements et expliquer
-        son fonctionnement.
-    </p>
+```
+<p>
+    Dans cette SAE, j’ai réalisé la documentation de mon réseau domestique.
+    Le travail consistait à identifier les équipements, représenter la topologie,
+    expliquer le câblage, l’adressage IP, le DHCP, le DNS, le NAT, le Wi-Fi
+    et les fonctions principales de la Freebox.
+</p>
 
-    <p><b>Éléments travaillés :</b></p>
+<p>
+    Cette preuve montre ma capacité à observer une infrastructure réseau,
+    la représenter clairement, comprendre le rôle des équipements et expliquer
+    son fonctionnement.
+</p>
+
+<div class="badges">
+    <span class="badge">SAE12</span>
     <span class="badge">Topologie réseau</span>
     <span class="badge">Adressage IP</span>
     <span class="badge">DHCP</span>
@@ -93,34 +298,61 @@ a:hover {
     <span class="badge">Wi-Fi</span>
     <span class="badge">Câblage</span>
 </div>
+```
 
-<div class="section">
+</section>
+
+<section class="section">
     <h2>Apprentissages critiques liés</h2>
-    <p>
-        Cette preuve correspond surtout aux apprentissages critiques suivants :
-    </p>
 
-    <ul>
-        <li><b>AC11.03 :</b> Configurer les fonctions de base du réseau local.</li>
-        <li><b>AC11.04 :</b> Comprendre les systèmes d’exploitation et les services liés au réseau.</li>
-        <li><b>AC11.05 :</b> Identifier les dysfonctionnements du réseau local et savoir les signaler.</li>
-        <li><b>AC11.06 :</b> Installer ou documenter un poste client dans un réseau.</li>
-    </ul>
+```
+<div class="ac-list">
+    <div class="ac-item">
+        <b>AC11.03 :</b> Configurer les fonctions de base du réseau local.
+    </div>
+
+    <div class="ac-item">
+        <b>AC11.04 :</b> Maîtriser les rôles et principes fondamentaux des systèmes
+        d’exploitation afin d’interagir avec ceux-ci pour la configuration et l’administration.
+    </div>
+
+    <div class="ac-item">
+        <b>AC11.05 :</b> Identifier les dysfonctionnements du réseau local et savoir les signaler.
+    </div>
+
+    <div class="ac-item">
+        <b>AC11.06 :</b> Installer un poste client et expliquer la procédure mise en place.
+    </div>
 </div>
+```
 
-<div class="section">
+</section>
+
+<section class="section">
     <h2>Ce que j’ai appris</h2>
-    <p>
-        Ce travail m’a appris qu’un réseau local ne se limite pas à une connexion Internet.
-        Il faut aussi comprendre l’organisation des équipements, les adresses IP,
-        les services comme DHCP et DNS, les différences entre Ethernet et Wi-Fi,
-        ainsi que l’importance d’une documentation claire pour intervenir ou dépanner.
-    </p>
-</div>
 
-<div class="section">
+```
+<p>
+    Ce travail m’a appris qu’un réseau local ne se limite pas à une connexion Internet.
+    Il faut aussi comprendre l’organisation des équipements, les adresses IP,
+    les services comme DHCP et DNS, les différences entre Ethernet et Wi-Fi,
+    ainsi que l’importance d’une documentation claire pour intervenir ou dépanner.
+</p>
+
+<p>
+    J’ai aussi compris qu’une documentation réseau doit rester lisible et utile :
+    elle doit permettre à une autre personne de comprendre rapidement la structure du réseau,
+    les équipements présents et les informations importantes pour une intervention.
+</p>
+```
+
+</section>
+
+<section class="section">
     <h2>Preuves déposées</h2>
 
+```
+<div class="proof-card">
     <p>
         <b>Preuve 1 :</b>
         <a href="preuves/administrer/Architecture du réseau local – SAE 12 Omed Resultats Finale format Pdff.pdf" target="_blank">
@@ -133,13 +365,20 @@ a:hover {
         les détails techniques du réseau, le plan d’adressage IP, le DHCP, le DNS,
         le NAT, le Wi-Fi, le câblage et la topologie finale.
     </p>
-
-    <p>
-        <a href="index.html">← Retour au portfolio</a>
-    </p>
 </div>
 
+<p style="margin-top: 25px;">
+    <a href="index.html">← Retour au portfolio</a>
+</p>
+```
+
+</section>
+
 </main>
+
+<footer>
+    Portfolio SAE25 – Compétence Administrer – Omed Gul Amini
+</footer>
 
 </body>
 </html>
