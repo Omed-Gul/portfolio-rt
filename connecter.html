@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Connecter - Portfolio R&T</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f3f5f7;
+    color: #222;
+}
+
+header {
+    background: #1f2937;
+    color: white;
+    padding: 35px;
+    text-align: center;
+}
+
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: #1f2937;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 8px;
+}
+
+.badge {
+    display: inline-block;
+    background: #e5e7eb;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 4px;
+    font-size: 14px;
+}
+
+a {
+    color: #2563eb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Compétence 2 – Connecter les entreprises et les usagers</h1>
+    <p>Niveau 1 : Découvrir les transmissions et la ToIP</p>
+</header>
+
+<main>
+
+<div class="section">
+    <h2>Preuve principale : SAE22 – Mesurer et caractériser un signal</h2>
+    <p>
+        Dans cette SAE, j’ai travaillé sur la synthèse sonore avec MATLAB à partir de l’algorithme de Karplus-Strong.
+        L’objectif était de générer un son de guitare numérique, d’analyser le signal obtenu, puis de le modifier avec un effet.
+    </p>
+
+    <p>
+        J’ai utilisé la génération de bruit blanc, une ligne à retard, un filtre passe-bas, la FFT pour observer le spectre,
+        puis une saturation pour créer un effet de distorsion. Ce travail m’a permis de mieux comprendre le lien entre
+        signal temporel, fréquence, filtrage et perception sonore.
+    </p>
+
+    <p><b>Éléments travaillés :</b></p>
+    <span class="badge">MATLAB</span>
+    <span class="badge">FFT</span>
+    <span class="badge">Filtrage passe-bas</span>
+    <span class="badge">Karplus-Strong</span>
+    <span class="badge">Signal sonore</span>
+    <span class="badge">Spectre fréquentiel</span>
+</div>
+
+<div class="section">
+    <h2>Preuve complémentaire : R204 – Téléphonie IP / VoIP</h2>
+    <p>
+        Le TP R204 m’a permis de découvrir une infrastructure de téléphonie IP avec Cisco CallManager,
+        Cisco Unity Connection et des postes téléphoniques Cisco.
+    </p>
+
+    <p>
+        J’ai travaillé sur le rôle des serveurs CUCM et CUC, l’alimentation PoE des téléphones IP,
+        l’adressage IP d’un poste téléphonique, l’utilisation du DHCP et la séparation entre VLAN voix et VLAN données.
+    </p>
+
+    <p><b>Éléments travaillés :</b></p>
+    <span class="badge">VoIP</span>
+    <span class="badge">CUCM</span>
+    <span class="badge">CUC</span>
+    <span class="badge">Téléphone IP</span>
+    <span class="badge">PoE</span>
+    <span class="badge">VLAN voix</span>
+</div>
+
+<div class="section">
+    <h2>Apprentissages critiques liés</h2>
+    <ul>
+        <li><b>AC12.01 :</b> Mesurer, analyser et commenter les signaux.</li>
+        <li><b>AC12.02 :</b> Caractériser des systèmes de transmissions élémentaires.</li>
+        <li><b>AC12.04 :</b> Connecter les systèmes de ToIP.</li>
+        <li><b>AC12.05 :</b> Communiquer avec un tiers et adapter son discours technique.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Ce que j’ai appris</h2>
+    <p>
+        J’ai compris qu’un signal peut être étudié de deux façons : dans le temps et dans les fréquences.
+        La FFT permet de voir les harmoniques d’un son, et le filtrage modifie le contenu fréquentiel.
+        Avec la VoIP, j’ai aussi vu que connecter des usagers ne dépend pas seulement du câble ou du téléphone,
+        mais aussi des serveurs, des VLAN, du DHCP et de la signalisation.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Preuves déposées</h2>
+    <p>
+        <a href="https://github.com/Omed-Gul/portfolio-rt/tree/main/preuves/connecter" target="_blank">
+            Voir les fichiers de preuve Connecter sur GitHub
+        </a>
+    </p>
+
+    <p>
+        <a href="index.html">← Retour au portfolio</a>
+    </p>
+</div>
+
+</main>
+
+</body>
+</html>
