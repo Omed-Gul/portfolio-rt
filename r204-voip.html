@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R204 VoIP - Preuve Connecter</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #100700;
+    color: #fff7ed;
+    line-height: 1.6;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.35), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(234, 88, 12, 0.25), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(250, 204, 21, 0.16), transparent 35%),
+        linear-gradient(135deg, #100700, #1f1203 55%, #2a1602);
+    z-index: -2;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(16, 7, 0, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.nav-inner {
+    max-width: 1100px;
+    margin: auto;
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fde68a;
+    font-weight: 900;
+}
+
+.nav-inner a {
+    color: #facc15;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.hero {
+    max-width: 1100px;
+    margin: auto;
+    padding: 70px 22px 35px;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(251, 191, 36, 0.50);
+    color: #fde68a;
+    background: rgba(120, 53, 15, 0.28);
+    border-radius: 999px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 18px;
+    color: white;
+}
+
+.hero p {
+    max-width: 850px;
+    color: #fed7aa;
+    font-size: 19px;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px 22px 70px;
+}
+
+.section {
+    background: rgba(28, 16, 2, 0.80);
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 46px rgba(0,0,0,0.32);
+    backdrop-filter: blur(14px);
+    animation: appear 0.7s ease both;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section h2 {
+    color: #fffbeb;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.section p {
+    color: #fed7aa;
+    margin-bottom: 14px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.card {
+    background: rgba(120, 53, 15, 0.28);
+    border: 1px solid rgba(251, 191, 36, 0.24);
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 191, 36, 0.65);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+}
+
+.card b {
+    color: #facc15;
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    margin: 4px;
+    background: rgba(245, 158, 11, 0.13);
+    border: 1px solid rgba(251, 191, 36, 0.30);
+    color: #fffbeb;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.note {
+    background: rgba(69, 26, 3, 0.50);
+    border-left: 4px solid #facc15;
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 15px;
+}
+
+a {
+    color: #facc15;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fffbeb;
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 34px 20px;
+    color: #fde68a;
+    opacity: 0.8;
+}
+
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">R204 · Téléphonie IP / VoIP</div>
+        <a href="connecter.html">← Retour à Connecter</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <span class="kicker">Preuve complémentaire · Compétence Connecter</span>
+    <h1>TP R204 – Infrastructure VoIP Cisco</h1>
+    <p>
+        Cette preuve présente mon travail autour d’une infrastructure de téléphonie IP :
+        serveurs Cisco, postes téléphoniques, PoE, DHCP, VLAN voix et séparation voix/données.
+    </p>
+</header>
+
+<main>
+
+<section class="section">
+    <h2>Objectif du TP</h2>
+
+```
+<p>
+    L’objectif du TP était de découvrir une infrastructure VoIP professionnelle,
+    de comprendre le rôle des serveurs Cisco et d’utiliser les fonctions téléphoniques de base.
+</p>
+
+<p>
+    Le sujet demandait aussi d’analyser l’environnement serveur, d’observer un poste téléphonique,
+    de comprendre son alimentation, son adressage IP et son intégration dans un réseau d’entreprise.
+</p>
+
+<div>
+    <span class="badge">VoIP</span>
+    <span class="badge">Cisco</span>
+    <span class="badge">CUCM</span>
+    <span class="badge">CUC</span>
+    <span class="badge">Téléphone IP</span>
+    <span class="badge">VLAN voix</span>
+    <span class="badge">DHCP</span>
+    <span class="badge">PoE</span>
+</div>
+```
+
+</section>
+
+<section class="section">
+    <h2>Infrastructure étudiée</h2>
+
+```
+<div class="grid">
+    <div class="card">
+        <b>CUCM – Cisco Unified Communications Manager</b>
+        <p>
+            Le CUCM est le cœur de la téléphonie IP. Il gère les appels, les téléphones IP,
+            les utilisateurs, les numéros internes et le routage des communications.
+        </p>
+    </div>
+
+    <div class="card">
+        <b>CUC – Cisco Unity Connection</b>
+        <p>
+            Le CUC est lié à la messagerie vocale. Il permet de gérer les boîtes vocales,
+            les messages vocaux et certains services vocaux automatisés.
+        </p>
+    </div>
+
+    <div class="card">
+        <b>Poste téléphonique Cisco</b>
+        <p>
+            J’ai observé un téléphone IP Cisco afin de relever des informations comme le modèle,
+            l’adresse IP, l’adresse MAC, l’état du poste et les paramètres réseau.
+        </p>
+    </div>
+
+    <div class="card">
+        <b>Réseau voix</b>
+        <p>
+            Le téléphone peut être branché sur la même prise réseau qu’un PC, mais utiliser un VLAN voix
+            séparé du VLAN données. Cela permet d’organiser et d’isoler le trafic téléphonique.
+        </p>
+    </div>
+</div>
+```
+
+</section>
+
+<section class="section">
+    <h2>Travail réalisé</h2>
+
+```
+<p>
+    Dans ce TP, j’ai comparé une solution On-Premise et une solution SaaS.
+    Une solution On-Premise donne plus de contrôle sur l’infrastructure et les données,
+    mais demande plus de maintenance. Une solution SaaS est plus simple à déployer
+    et plus rapide à faire évoluer, mais dépend davantage d’Internet et du fournisseur.
+</p>
+
+<p>
+    J’ai ensuite étudié le rôle des serveurs CUCM et CUC, puis observé un poste téléphonique IP.
+    Le téléphone pouvait être alimenté soit par un bloc externe, soit par PoE, c’est-à-dire avec
+    l’alimentation électrique transmise directement par le câble Ethernet.
+</p>
+
+<p>
+    J’ai relevé que le téléphone utilisait une adresse IP propre et qu’il pouvait être séparé du PC
+    grâce à un VLAN voix. Même si le téléphone et le PC utilisent la même prise physique,
+    le switch peut séparer le trafic voix et le trafic données.
+</p>
+```
+
+</section>
+
+<section class="section">
+    <h2>Lien avec la compétence Connecter</h2>
+
+```
+<p>
+    Cette preuve est liée à la compétence <b>Connecter les entreprises et les usagers</b>,
+    car elle montre comment des utilisateurs sont connectés à travers une infrastructure
+    de téléphonie IP.
+</p>
+
+<div class="grid">
+    <div class="card">
+        <b>Connexion des usagers</b>
+        <p>
+            Les téléphones IP permettent aux utilisateurs de communiquer via le réseau de l’entreprise.
+        </p>
+    </div>
+
+    <div class="card">
+        <b>Transmission voix</b>
+        <p>
+            La voix passe par le réseau IP et nécessite une configuration adaptée pour fonctionner correctement.
+        </p>
+    </div>
+
+    <div class="card">
+        <b>VLAN voix</b>
+        <p>
+            La séparation entre voix et données améliore l’organisation du réseau et facilite l’administration.
+        </p>
+    </div>
+
+    <div class="card">
+        <b>Services téléphoniques</b>
+        <p>
+            Les serveurs CUCM et CUC fournissent les services nécessaires aux appels et à la messagerie vocale.
+        </p>
+    </div>
+</div>
+```
+
+</section>
+
+<section class="section">
+    <h2>Ce que j’ai appris</h2>
+
+```
+<p>
+    J’ai compris que la téléphonie IP ne dépend pas seulement du téléphone.
+    Elle repose sur plusieurs éléments : serveur d’appel, messagerie vocale,
+    adressage IP, DHCP, PoE, VLAN voix et configuration réseau.
+</p>
+
+<div class="note">
+    Cette preuve montre une progression importante : je ne vois plus la téléphonie comme un simple appareil,
+    mais comme un service réseau complet qui nécessite une infrastructure cohérente.
+</div>
+```
+
+</section>
+
+<section class="section">
+    <h2>Document lié</h2>
+
+```
+<p>
+    <a href="preuves/connecter/TP_R204_VoIP_Omed_Gul.md" target="_blank">
+        Ouvrir la trace écrite R204 VoIP
+    </a>
+</p>
+
+<p>
+    <a href="connecter.html">← Retour à la compétence Connecter</a>
+</p>
+```
+
+</section>
+
+</main>
+
+<footer>
+    Portfolio SAE25 – R204 VoIP – Omed Gul Amini
+</footer>
+
+</body>
+</html>
