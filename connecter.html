@@ -1,88 +1,435 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connecter - Portfolio R&T</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
-    background: #f3f5f7;
-    color: #222;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header {
-    background: #1f2937;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0f0900;
+    color: #fff7ed;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(245, 158, 11, 0.36), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(234, 88, 12, 0.28), transparent 28%),
+        radial-gradient(circle at 50% 95%, rgba(250, 204, 21, 0.16), transparent 35%),
+        linear-gradient(135deg, #0f0900, #1c1002 55%, #2a1602);
+    z-index: -2;
+}
+
+.signal-lines {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.35;
+    background:
+        repeating-linear-gradient(
+            120deg,
+            transparent 0px,
+            transparent 34px,
+            rgba(251, 191, 36, 0.08) 35px,
+            rgba(251, 191, 36, 0.08) 36px
+        );
+    animation: signalMove 16s linear infinite;
+}
+
+@keyframes signalMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(80px); }
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(15, 9, 0, 0.78);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.nav-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fde68a;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #ffedd5;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    opacity: 0.88;
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    color: #facc15;
+}
+
+.hero {
+    max-width: 1180px;
+    margin: auto;
+    padding: 75px 22px 35px;
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    gap: 34px;
+    align-items: center;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(251, 191, 36, 0.50);
+    color: #fde68a;
+    background: rgba(120, 53, 15, 0.28);
+    border-radius: 999px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.02;
+    margin-bottom: 20px;
     color: white;
-    padding: 35px;
-    text-align: center;
+}
+
+.hero p {
+    color: #fed7aa;
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 900;
+    transition: 0.25s;
+}
+
+.btn-main {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    color: white;
+    box-shadow: 0 0 26px rgba(245, 158, 11, 0.35);
+}
+
+.btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 34px rgba(245, 158, 11, 0.55);
+}
+
+.btn-ghost {
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    color: #ffedd5;
+    background: rgba(255,255,255,0.05);
+}
+
+.btn-ghost:hover {
+    transform: translateY(-3px);
+    background: rgba(245, 158, 11, 0.12);
+}
+
+.wave-panel {
+    min-height: 330px;
+    border-radius: 24px;
+    border: 1px solid rgba(251, 191, 36, 0.30);
+    background:
+        linear-gradient(145deg, rgba(69, 26, 3, 0.74), rgba(15, 9, 0, 0.86));
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-panel svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wave {
+    fill: none;
+    stroke: #facc15;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.75));
+    stroke-dasharray: 18 14;
+    animation: dash 3s linear infinite;
+}
+
+.wave2 {
+    fill: none;
+    stroke: #fb923c;
+    stroke-width: 3;
+    opacity: 0.75;
+    stroke-dasharray: 12 10;
+    animation: dash 4s linear infinite reverse;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -120;
+    }
+}
+
+.signal-label {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    right: 24px;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(15, 9, 0, 0.72);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.signal-label b {
+    color: #facc15;
 }
 
 main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+    max-width: 1180px;
+    margin: auto;
+    padding: 20px 22px 70px;
 }
 
 .section {
-    background: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: rgba(28, 16, 2, 0.78);
+    border: 1px solid rgba(251, 191, 36, 0.20);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 46px rgba(0,0,0,0.32);
+    backdrop-filter: blur(14px);
+    animation: appear 0.75s ease both;
 }
 
-h2 {
-    color: #1f2937;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 8px;
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section h2 {
+    color: #fffbeb;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.section p {
+    color: #fed7aa;
+    margin-bottom: 14px;
+}
+
+.badges {
+    margin-top: 14px;
 }
 
 .badge {
     display: inline-block;
-    background: #e5e7eb;
-    padding: 6px 10px;
-    border-radius: 8px;
+    padding: 7px 12px;
+    border-radius: 999px;
     margin: 4px;
-    font-size: 14px;
+    background: rgba(245, 158, 11, 0.13);
+    border: 1px solid rgba(251, 191, 36, 0.30);
+    color: #fffbeb;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.info-card {
+    background: rgba(120, 53, 15, 0.28);
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.25s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 191, 36, 0.60);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+}
+
+.info-card b {
+    color: #facc15;
+}
+
+.proof {
+    background: rgba(113, 63, 18, 0.30);
+    border: 1px solid rgba(251, 191, 36, 0.32);
+    border-radius: 18px;
+    padding: 22px;
+    margin-top: 14px;
+    transition: 0.25s;
+}
+
+.proof:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.38);
 }
 
 a {
-    color: #2563eb;
-    font-weight: bold;
+    color: #facc15;
+    font-weight: 900;
     text-decoration: none;
 }
 
 a:hover {
+    color: #fffbeb;
     text-decoration: underline;
 }
+
+footer {
+    text-align: center;
+    padding: 34px 20px;
+    color: #fde68a;
+    opacity: 0.8;
+}
+
+@media (max-width: 950px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
 </style>
+
 </head>
 
 <body>
 
-<header>
-    <h1>Compétence 2 – Connecter les entreprises et les usagers</h1>
-    <p>Niveau 1 : Découvrir les transmissions et la ToIP</p>
+<div class="signal-lines"></div>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">CONNECTER · SIGNAUX & ToIP</div>
+        <div class="nav-links">
+            <a href="#sae22">SAE22</a>
+            <a href="#r204">R204 VoIP</a>
+            <a href="#ac">Apprentissages</a>
+            <a href="#documents">Documents</a>
+            <a href="index.html">Retour</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div>
+        <span class="kicker">Compétence 2 · Transmissions & téléphonie IP</span>
+        <h1>Connecter les entreprises et les usagers</h1>
+        <p>
+            Cette page présente mes preuves liées aux signaux, aux transmissions et à la téléphonie IP :
+            analyse fréquentielle, filtrage, synthèse sonore et découverte de l’infrastructure VoIP.
+        </p>
+
+```
+    <div class="hero-actions">
+        <a class="btn btn-main" href="#documents">Ouvrir les preuves</a>
+        <a class="btn btn-ghost" href="index.html">← Retour au portfolio</a>
+    </div>
+</div>
+
+<div class="wave-panel">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="none">
+        <path class="wave" d="M0,200 C80,80 160,320 240,200 C320,80 400,320 480,200 C560,80 640,320 720,200 C760,140 790,160 800,200"></path>
+        <path class="wave2" d="M0,250 C90,170 160,310 250,230 C340,150 430,310 520,230 C610,150 700,310 800,230"></path>
+    </svg>
+
+    <div class="signal-label">
+        <b>Signal → Analyse → Transmission</b>
+        <p>
+            FFT, filtrage passe-bas, Karplus-Strong, VoIP, CUCM, CUC et VLAN voix.
+        </p>
+    </div>
+</div>
+```
+
 </header>
 
 <main>
 
-<div class="section">
+<section class="section" id="sae22">
     <h2>Preuve principale : SAE22 – Mesurer et caractériser un signal</h2>
-    <p>
-        Dans cette SAE, j’ai travaillé sur la synthèse sonore avec MATLAB à partir de l’algorithme de Karplus-Strong.
-        L’objectif était de générer un son de guitare numérique, d’analyser le signal obtenu, puis de le modifier avec un effet.
-    </p>
 
-    <p>
-        J’ai utilisé la génération de bruit blanc, une ligne à retard, un filtre passe-bas, la FFT pour observer le spectre,
-        puis une saturation pour créer un effet de distorsion. Ce travail m’a permis de mieux comprendre le lien entre
-        signal temporel, fréquence, filtrage et perception sonore.
-    </p>
+```
+<p>
+    Dans cette SAE, j’ai travaillé sur la synthèse sonore avec MATLAB à partir de l’algorithme
+    de Karplus-Strong. L’objectif était de générer un son de guitare numérique, d’analyser le signal
+    obtenu, puis de le modifier avec un effet.
+</p>
 
-    <p><b>Éléments travaillés :</b></p>
+<p>
+    J’ai utilisé la génération de bruit blanc, une ligne à retard, un filtre passe-bas, la FFT
+    pour observer le spectre, puis une saturation pour créer un effet de distorsion.
+</p>
+
+<div class="badges">
+    <span class="badge">SAE22</span>
     <span class="badge">MATLAB</span>
     <span class="badge">FFT</span>
     <span class="badge">Filtrage passe-bas</span>
@@ -90,20 +437,26 @@ a:hover {
     <span class="badge">Signal sonore</span>
     <span class="badge">Spectre fréquentiel</span>
 </div>
+```
 
-<div class="section">
+</section>
+
+<section class="section" id="r204">
     <h2>Preuve complémentaire : R204 – Téléphonie IP / VoIP</h2>
-    <p>
-        Le TP R204 m’a permis de découvrir une infrastructure de téléphonie IP avec Cisco CallManager,
-        Cisco Unity Connection et des postes téléphoniques Cisco.
-    </p>
 
-    <p>
-        J’ai travaillé sur le rôle des serveurs CUCM et CUC, l’alimentation PoE des téléphones IP,
-        l’adressage IP d’un poste téléphonique, l’utilisation du DHCP et la séparation entre VLAN voix et VLAN données.
-    </p>
+```
+<p>
+    Le TP R204 m’a permis de découvrir une infrastructure de téléphonie IP avec Cisco CallManager,
+    Cisco Unity Connection et des postes téléphoniques Cisco.
+</p>
 
-    <p><b>Éléments travaillés :</b></p>
+<p>
+    J’ai travaillé sur le rôle des serveurs CUCM et CUC, l’alimentation PoE des téléphones IP,
+    l’adressage IP d’un poste téléphonique, l’utilisation du DHCP et la séparation entre VLAN voix
+    et VLAN données.
+</p>
+
+<div class="badges">
     <span class="badge">VoIP</span>
     <span class="badge">CUCM</span>
     <span class="badge">CUC</span>
@@ -111,29 +464,61 @@ a:hover {
     <span class="badge">PoE</span>
     <span class="badge">VLAN voix</span>
 </div>
+```
 
-<div class="section">
+</section>
+
+<section class="section" id="ac">
     <h2>Apprentissages critiques liés</h2>
-    <ul>
-        <li><b>AC12.01 :</b> Mesurer, analyser et commenter les signaux.</li>
-        <li><b>AC12.02 :</b> Caractériser des systèmes de transmissions élémentaires.</li>
-        <li><b>AC12.04 :</b> Connecter les systèmes de ToIP.</li>
-        <li><b>AC12.05 :</b> Communiquer avec un tiers et adapter son discours technique.</li>
-    </ul>
-</div>
 
-<div class="section">
-    <h2>Ce que j’ai appris</h2>
-    <p>
-        J’ai compris qu’un signal peut être étudié de deux façons : dans le temps et dans les fréquences.
-        La FFT permet de voir les harmoniques d’un son, et le filtrage modifie le contenu fréquentiel.
-        Avec la VoIP, j’ai aussi vu que connecter des usagers ne dépend pas seulement du câble ou du téléphone,
-        mais aussi des serveurs, des VLAN, du DHCP et de la signalisation.
-    </p>
+```
+<div class="card-grid">
+    <div class="info-card">
+        <b>AC12.01</b>
+        <p>Mesurer, analyser et commenter les signaux.</p>
+    </div>
+
+    <div class="info-card">
+        <b>AC12.02</b>
+        <p>Caractériser des systèmes de transmissions élémentaires.</p>
+    </div>
+
+    <div class="info-card">
+        <b>AC12.04</b>
+        <p>Connecter les systèmes de ToIP.</p>
+    </div>
+
+    <div class="info-card">
+        <b>AC12.05</b>
+        <p>Communiquer avec un tiers et adapter son discours technique.</p>
+    </div>
 </div>
-<div class="section">
+```
+
+</section>
+
+<section class="section">
+    <h2>Ce que j’ai appris</h2>
+
+```
+<p>
+    J’ai compris qu’un signal peut être étudié dans le domaine temporel et dans le domaine fréquentiel.
+    La FFT permet de visualiser les harmoniques, et le filtrage modifie le contenu fréquentiel.
+</p>
+
+<p>
+    Avec la VoIP, j’ai aussi compris que connecter des usagers ne dépend pas seulement du téléphone :
+    il faut aussi des serveurs, une configuration réseau, du DHCP, des VLAN et une signalisation adaptée.
+</p>
+```
+
+</section>
+
+<section class="section" id="documents">
     <h2>Preuves déposées</h2>
 
+```
+<div class="proof">
     <p>
         <b>Preuve 1 :</b>
         <a href="preuves/connecter/omed (2).mlx" target="_blank">
@@ -147,26 +532,31 @@ a:hover {
         synthèse d’une note avec l’algorithme de Karplus-Strong,
         création d’une mélodie et ajout d’un effet de saturation.
     </p>
-
-    <p>
-    <b>Preuve 2 :</b>
-    <a href="preuves/connecter/TP_R204_VoIP_Omed_Gul.md" target="_blank">
-        TP R204 VoIP – Cisco CallManager, Cisco Unity Connection, téléphones IP, PoE, DHCP et VLAN voix
-    </a>
-</p>
-
-    <p>
-    Cette preuve montre ma compréhension d’une infrastructure de téléphonie IP :
-    rôle du CUCM, rôle du CUC, alimentation PoE, adressage IP du téléphone,
-    DHCP et séparation du trafic voix avec un VLAN dédié.
-</p>
-
-    <p>
-        <a href="index.html">← Retour au portfolio</a>
-    </p>
 </div>
 
+<div class="proof">
+    <p>
+        <b>Preuve 2 :</b>
+        <a href="preuves/connecter/TP_R204_VoIP_Omed_Gul.md" target="_blank">
+            TP R204 VoIP – Cisco CallManager, Cisco Unity Connection, téléphones IP, PoE, DHCP et VLAN voix
+        </a>
+    </p>
+
+    <p>
+        Cette preuve montre ma compréhension d’une infrastructure de téléphonie IP :
+        rôle du CUCM, rôle du CUC, alimentation PoE, adressage IP du téléphone,
+        DHCP et séparation du trafic voix avec un VLAN dédié.
+    </p>
+</div>
+```
+
+</section>
+
 </main>
+
+<footer>
+    Portfolio SAE25 – Compétence Connecter – Omed Gul Amini
+</footer>
 
 </body>
 </html>
